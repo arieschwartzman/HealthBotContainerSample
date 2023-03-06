@@ -134,7 +134,7 @@ function initBotConversation() {
 
                 }
                 else if (action.type === 'DIRECT_LINE/INCOMING_ACTIVITY') {
-                    if (action.payload && action.payload.activity && action.payload.activity.entities.find(e => e.secret === true)) {
+                    if (action.payload && action.payload.activity && action.payload.activity.entities && action.payload.activity.entities.find(e => e.secret === true)) {
                         const input = document.getElementsByClassName("webchat__send-box-text-box__input")[0];
                         if (input) {
                             input.type = "password";
