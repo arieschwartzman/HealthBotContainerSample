@@ -134,13 +134,12 @@ function initBotConversation() {
 
                 }
                 else if (action.type === 'DIRECT_LINE/INCOMING_ACTIVITY') {
-                    if (action.payload && action.payload.activity && action.payload.activity.entities && action.payload.activity.entities.find(e => e.secret === true)) {
-                        const input = document.getElementsByClassName("webchat__send-box-text-box__input")[0];
-                        if (input) {
-                            input.type = "password";
-                        } else {
-                            input.type = "text";
-                        }
+                    const input = document.getElementsByClassName("webchat__send-box-text-box__input")[0];
+                    if (input && action.payload && action.payload.activity && action.payload.activity.entities && action.payload.activity.entities.find(e => e.secret === true)) {
+                        input.type = "password";
+                    }
+                    else if (input) {
+                        input.type = "text";
                     }
                     if (action.payload && action.payload.activity && action.payload.activity.type === "event" && action.payload.activity.name === "ShareLocationEvent") {
                         // share
