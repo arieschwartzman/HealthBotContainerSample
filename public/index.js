@@ -134,12 +134,10 @@ function initBotConversation() {
 
                 }
                 else if (action.type === 'DIRECT_LINE/INCOMING_ACTIVITY') {
+                    const inputType = (input && action.payload && action.payload.activity && action.payload.activity.entities && action.payload.activity.entities.find(e => e.secret === true)) ? "password" : "text";
                     const input = document.getElementsByClassName("webchat__send-box-text-box__input")[0];
-                    if (input && action.payload && action.payload.activity && action.payload.activity.entities && action.payload.activity.entities.find(e => e.secret === true)) {
-                        input.type = "password";
-                    }
-                    else if (input) {
-                        input.type = "text";
+                    if (input && input.type !== inputType) {
+                        input.type = inputType;
                     }
                     if (action.payload && action.payload.activity && action.payload.activity.type === "event" && action.payload.activity.name === "ShareLocationEvent") {
                         // share
